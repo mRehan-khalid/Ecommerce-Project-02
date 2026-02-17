@@ -7,6 +7,18 @@
   pointer-events: none;
 }
 
+
+.deleteProduct{
+  background-color: #c21a1a;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+.nav_bar_wrapper a{
+  padding-left: 30px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
