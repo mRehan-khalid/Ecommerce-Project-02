@@ -17,7 +17,8 @@ import Spinner from 'react-bootstrap/Spinner';
 
 function Register() {
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user-info"));
+        const userInfo = JSON.parse(localStorage.getItem("user-info"));
+        const user = userInfo.user;
         if (localStorage.getItem("user-info")) {
              if(user && user.id){
             navigate("/AddProduct");

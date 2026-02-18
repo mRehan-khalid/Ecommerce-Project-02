@@ -1,16 +1,16 @@
 import Header from '../Header/header';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon
-}from 'mdb-react-ui-kit';
+    MDBBtn,
+    MDBContainer,
+    MDBRow,
+    MDBCol,
+    MDBCard,
+    MDBCardBody,
+    MDBInput,
+    MDBIcon
+} from 'mdb-react-ui-kit';
 import { motion } from "framer-motion";
 import './login.css';
 import Spinner from 'react-bootstrap/Spinner';
@@ -18,11 +18,11 @@ import Spinner from 'react-bootstrap/Spinner';
 function Login() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("user-info")) {
-            navigate("/AddProduct");
+            navigate("/searchProduct");
         }
     }, [])
 async function handleLogin() {
@@ -39,102 +39,96 @@ async function handleLogin() {
 
     setLoading(true);
 
-    let response = await fetch("http://localhost:8000/api/login", {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-    });
+    try {
+        let response = await fetch("http://localhost:8000/api/login", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
 
-    // 🔥 WAIT FOR RESPONSE FIRST
-    if (!response.ok) {
-        let errorData = await response.json();
-        alert(errorData.message || "Login failed");
+        let result = await response.json();
         setLoading(false);
-        return;
-    }
 
-    let result = await response.json();
+        if (result.success) {
 
-    localStorage.setItem("user-info", JSON.stringify(result));
+            localStorage.setItem("user-info", JSON.stringify(result));
 
-    setLoading(false);
+            if (result.user.user_role === "admin") {
+                navigate("/AddProduct");
+            } else {
+                navigate("/searchProduct");
+            }
 
-    // 🔥 Role Based Redirect
-    if (result.user_role === "admin") {
-        navigate("/AddProduct");
-    } else {
-        navigate("/");
+        } else{
+            alert(result.message || "Invalid Email or Password");
+        }
+
+    } catch (error) {
+        setLoading(false);
+        alert("Server error");
     }
 }
     return (
-        // <div>
-        //     <Header />
-        //     <h1>Login Page</h1>
-        //     <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
-        //     <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /> 
-        //     <br /> <br />         
-        //     <button className="btn btn-primary" onClick={Login}>Login</button>
-        // </div>
-        
-<motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1}}
-  className='loginPage'
->
-        <MDBContainer fluid className='contentForLogin'>
 
-        <MDBRow className='d-flex justify-content-center align-items-center h-100'>
-            <MDBCol col='12'>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className='loginPage'
+        >
+            <MDBContainer fluid className='contentForLogin'>
 
-            <MDBCard className='bg-dark text-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '450px', maxHeight:'100vw', backgroundColor:'White'}}>
-                <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
+                <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+                    <MDBCol col='12'>
 
-                <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                <p className="text-white-50 mb-5">Please enter your login and password!</p>
+                        <MDBCard className='bg-dark text-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '450px', maxHeight: '100vw', backgroundColor: 'White' }}>
+                            <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
-                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
-                <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-                <button  outline className='mx-2 px-5 loginButton' color='white' size='lg' onClick={()=>handleLogin()} disabled={loading} >
-                    {loading ? (
-                    <Spinner animation="border" size="sm" variant="light" />
-                  ) : (
-                    "Login"
-                  )}
-                </button>                
+                                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+                                <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                <button outline className='mx-2 px-5 loginButton' color='white' size='lg' onClick={() => handleLogin()} disabled={loading} >
+                                    {loading ? (
+                                        <Spinner animation="border" size="sm" variant="light" />
+                                    ) : (
+                                        "Login"
+                                    )}
+                                </button>
 
 
-                <div className='d-flex flex-row mt-3 mb-5'>
-                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                    <MDBIcon fab icon='facebook-f' size="lg"/>
-                    </MDBBtn>
+                                <div className='d-flex flex-row mt-3 mb-5'>
+                                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                                        <MDBIcon fab icon='facebook-f' size="lg" />
+                                    </MDBBtn>
 
-                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                    <MDBIcon fab icon='twitter' size="lg"/>
-                    </MDBBtn>
+                                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                                        <MDBIcon fab icon='twitter' size="lg" />
+                                    </MDBBtn>
 
-                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                    <MDBIcon fab icon='google' size="lg"/>
-                    </MDBBtn>
-                </div>
+                                    <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                                        <MDBIcon fab icon='google' size="lg" />
+                                    </MDBBtn>
+                                </div>
 
-                <div>
-                    <p className="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold"    onClick={()=>navigate("/Register")}>Sign Up</a></p>
+                                <div>
+                                    <p className="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold" onClick={() => navigate("/Register")}>Sign Up</a></p>
 
-                </div>
-                </MDBCardBody>
-            </MDBCard>
+                                </div>
+                            </MDBCardBody>
+                        </MDBCard>
 
-            </MDBCol>
-        </MDBRow>
+                    </MDBCol>
+                </MDBRow>
 
-        </MDBContainer>
-    </motion.div>
+            </MDBContainer>
+        </motion.div>
     );
 }
 export default Login;

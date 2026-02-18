@@ -1,6 +1,5 @@
 import Header from '../Header/header';
 import { useParams } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
 import "./UpdateProduct.css";
 
 function UpdateProduct () {

@@ -8,7 +8,9 @@
 h1 {
   text-align: center;
   margin-bottom: 25px;
-  font-size: 2rem;
+  font-size: 1rem;
+  padding: 10px;
+  font-weight: 600 !important; 
   color: #333;
 }
 
@@ -19,11 +21,18 @@ table {
   background-color: #fff;
 }
 
+.btn .btn-primary{
+  width: 20% !important;
+}
 th {
   background-color: #303337 !important; 
   color: #ffffff !important;
   text-align: center;
   font-weight: 600;
+}
+.tableHeadingRow th{
+  padding: 16px !important;
+  border: 4px solid black ;
 }
 
 td {
@@ -31,13 +40,12 @@ td {
   vertical-align: middle;
 }
 
-/* Hover effect for rows */
 tbody tr:hover {
   background-color: #f2f2f2;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
-/* Product images */
 td img {
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -50,7 +58,6 @@ td img:hover {
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Action buttons */
 .deleteProduct,
 .updateProduct,
 .addToCart {
@@ -60,19 +67,19 @@ td img:hover {
   transition: all 0.3s ease;
   display: inline-block;
 }
-
-/* Delete button */
+.addToCart:hover{
+  background-color: #218438 !important;
+  color: rgb(255, 249, 249) !important;
+}
 .deleteProduct {
   background-color: #f8d7da;
   color: #721c24;
 }
-
 .deleteProduct:hover {
   background-color: #f5c6cb;
   cursor: pointer;
 }
 
-/* Update button */
 .updateProduct {
   background-color: #cce5ff;
   color: #004085;
@@ -83,7 +90,6 @@ td img:hover {
   cursor: pointer;
 }
 
-/* Add to Cart button */
 .addToCart {
   background-color: #d4edda;
   color: #155724;
@@ -94,7 +100,6 @@ td img:hover {
   cursor: pointer;
 }
 
-/* Responsive table */
 @media (max-width: 768px) {
   table, thead, tbody, th, td, tr {
     display: block;

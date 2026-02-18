@@ -9,7 +9,7 @@ import UpdateProduct from './Components/UpdateProduct/UpdateProduct';
 import AddProduct from './Components/AddProduct/AddProduct';
 import Protected from './Protected';
 import ProductList from './Components/ProductList/ProductList';
-import SearchProduct from './Components/Search/SearchProducts';
+import SearchProduct from './Components/Search/searchProduct';
 import CartView from './Components/CartView/CartView';
 import CartInvoicePage from './Components/CartInvoice/CartInvoice';
 import { useLocation, useNavigate } from "react-router-dom"; 
@@ -19,7 +19,7 @@ function App() {
   const location = useLocation();
   const { orderData, cartItems } = location.state || {};
   const navigate = useNavigate();
-
+  const [cartCount, setCartCount] = useState(0);
   const handleBackHome = () => {
     navigate("/");
   };
@@ -29,7 +29,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <h1>E-commerce Project with React and Php</h1> */}
         <Routes>
         <Route path="/UpdateProduct/:id" element={<Protected Component={UpdateProduct} />} />
         <Route path="/AddProduct" element={<Protected Component={AddProduct} />} />

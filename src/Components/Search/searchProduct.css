@@ -1,0 +1,22 @@
+.searchedProductsList{
+    border-radius: 1px !important;
+}
+.searchedProductsList tr th{
+    padding: 14px !important;
+    border: 2px solid black;
+}
+.searchedProductsList tr th{
+    padding: 14px !important;
+}
+.searchedProductsData td{
+    padding: 5px;
+    
+}
+
+.search-box .search-btn{
+    width: 25% !important;
+}
+
+.search-box h1{
+    font-size: 2rem !important;
+}

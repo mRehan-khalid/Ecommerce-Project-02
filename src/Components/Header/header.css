@@ -1,34 +1,41 @@
-/* Header.css */
 
-/* Navbar wrapper */
 .navbar {
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Brand */
 .navbar-brand {
   font-weight: bold;
   font-size: 1.5rem;
   color: #fff !important;
 }
 
-/* Nav links */
 .nav_bar_wrapper a {
   color: #fff !important;
-  margin-right: 15px;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  display: flex;
+  padding: 10px 12px;
+  border-radius: 5px;
 }
 
 .nav_bar_wrapper a:hover {
-  color: #0d6efd !important; /* Bootstrap primary color */
-  text-decoration: underline;
+  color: #62a1ff !important; 
+  background-color: rgb(44, 43, 43);
+}
+.loadingSpinner{
+  margin:40px;
+  /* padding: 40px; */
+
 }
 
-/* Dropdown styling */
+
+.nav_bar_wrapper .navbar-nav{
+  display: flex;
+  column-gap: 20px;
+}
 .navbar .dropdown-menu {
   background-color: #343a40;
 }
@@ -43,7 +50,23 @@
   color: #fff !important;
 }
 
-/* Adjust spacing for right-aligned user dropdown */
 .navbar-nav.ml-auto, .navbar-nav.ms-auto {
   margin-left: auto;
+}
+
+.TopNavbar{
+  display: flex;
+  justify-content: space-between !important;
+  padding: 10px !important;
+}
+
+.cart-badge {
+  background-color: red;
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 50%;
+  margin-left: 10px;
+  vertical-align: top;
 }
