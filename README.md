@@ -30,15 +30,15 @@ It provides a clean, user-friendly interface for both **Admin** and **User** pan
 ******************************************************************************************************************************************************************************************
 ## Tech Stack & Versions
 
-| Technology | Version |
-|-------------|----------|
-| **React.js** | 18.x |
-| **React Router DOM** | 6.x |
-| **MDB React UI Kit** | 6.x |
-| **React Bootstrap** | 2.x |
-| **Framer Motion** | 7.x |
-| **React Toastify** | 9.x |
-| **Node.js / npm** | ≥ 18 / 9+ |
+| Technology                  | Version   |
+|-----------------------------|-----------|
+| **React.js**                |  19.2.4   |
+| **React Router DOM**        | 6.30.3    |
+| **MDB React UI Kit**        |10.0.0     |
+| **React Bootstrap**         | 2.10.10   |
+| **Framer Motion**           | 12.34.1   |
+| **React Toastify**          | 11.0.5    |
+| **Node.js / npm**           | ≥ 20.19.0 |
 
 > All versions are listed in `package.json`.
 
