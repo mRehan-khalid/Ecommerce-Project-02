@@ -6,9 +6,8 @@ This is the **React frontend** for the **E-commerce System (I like Calling it Sm
 It provides a clean, user-friendly interface for both **Admin** and **User** panels, integrates with a **Laravel backend**, and follows **modern React development best practices**.
 
 ******************************************************************************************************************************************************************************************
----
-
 ## Project Overview
+---
 
 ### Key Features
 - **Admin Panel**
@@ -26,8 +25,7 @@ It provides a clean, user-friendly interface for both **Admin** and **User** pan
 - **Environment Configuration**
   - Simple `.env` setup for development and production  
 
----
-******************************************************************************************************************************************************************************************
+
 ## Tech Stack & Versions
 
 | Technology                  | Version   |
@@ -42,9 +40,9 @@ It provides a clean, user-friendly interface for both **Admin** and **User** pan
 
 > All versions are listed in `package.json`.
 
----
 ******************************************************************************************************************************************************************************************
 ## Project Structure
+---
 
 ```
 src/
@@ -60,9 +58,9 @@ src/
 - Modular styling is used with minimal external dependencies.  
 
 ---
-******************************************************************************************************************************************************************************************
-
 ## Setup Instructions
+---
+
 
 ### 1. Clone the Repository
 ```bash
@@ -101,9 +99,8 @@ npm start
 - Ensure your Laravel backend is active on port `8000` (or your configured port)
 
 ---
-******************************************************************************************************************************************************************************************
-
 ## Authentication & Roles
+---
 
 |        Role       |                                    Description                              |
 |-------------------|-----------------------------------------------------------------------------|
@@ -115,7 +112,6 @@ npm start
 - Duplicate registration prevention  
 
 ---
-******************************************************************************************************************************************************************************************
 
 ## Application Features
 
@@ -126,12 +122,16 @@ npm start
 - Update existing products  
 - Delete products  
 
+---
+
 ### User Panel
 - Search and view products  
 - Add to cart and adjust quantities  
 - Remove products from cart  
 - Place orders with invoice generation  
 - View past orders  
+
+---
 
 ### General Features
 - Loading spinners during API calls  
@@ -147,6 +147,8 @@ const response = await fetch(`${environment.serverUrl}/login`, {
   body: JSON.stringify({ email, password }),
 });
 ```
+---
+
 ## Assumptions
 
 - Authentication uses session/token-based login (not JWT)
