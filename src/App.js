@@ -10,7 +10,7 @@ import UpdateProduct from './Components/UpdateProduct/UpdateProduct';
 import AddProduct from './Components/AddProduct/AddProduct';
 import Protected from './Protected';
 import ProductList from './Components/ProductList/ProductList';
-import SearchProduct from './Components/Search/searchProduct';
+import SearchProduct from './Components/SearchProduct/searchProduct';
 import CartView from './Components/CartView/CartView';
 import CartInvoicePage from './Components/CartInvoice/CartInvoice';
 import OrderHistory from './Components/OrderHistory/OrderHistory';
