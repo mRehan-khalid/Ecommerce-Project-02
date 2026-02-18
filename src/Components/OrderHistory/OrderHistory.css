@@ -1,0 +1,154 @@
+/* OrderHistory.css */
+
+.order-history-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.order-history-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.history-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.order-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-history-table th,
+.order-history-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.order-history-table th {
+  background-color: #343a40;
+  color: #fff;
+  font-weight: 600;
+}
+
+.order-history-table td {
+  background-color: #fefefe;
+}
+
+.items-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.items-list li {
+  margin-bottom: 4px;
+}
+
+.amount {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.no-orders {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.grand-total {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #e9f7ef;
+  border: 1px solid #28a745;
+  border-radius: 6px;
+  color: #28a745;
+}
+
+
+.order-history-actions {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.icon-btn {
+  background-color: #007bff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.icon-btn:hover {
+  background-color: #0056b3;
+}
+
+.pdf-btn {
+  background-color: #e74c3c;
+}
+
+.pdf-btn:hover {
+  background-color: #c0392b;
+}
+
+.excel-btn {
+  background-color: #27ae60;
+}
+
+.excel-btn:hover {
+  background-color: #1e8449;
+}

@@ -78,8 +78,8 @@ async function addToCart(productId) {
         let result = await response.json();
 
         if (response.ok) {
-            toast.success(result.message); // Toast show
-            fetchCartCount(); // Badge update
+            toast.success(result.message); 
+            fetchCartCount(); 
         } else {
             toast.error(result.message || "Failed to add to cart");
         }
@@ -91,7 +91,7 @@ async function addToCart(productId) {
 
     return (
         <div>
-            <Header />
+            <Header  cartCount={cartCount} />
             <ToastContainer position="top-right" autoClose={1500} hideProgressBar />    
             {loading ? (
                 <Spinner animation="border" size="md" variant="light" className="loadingSpinner" />

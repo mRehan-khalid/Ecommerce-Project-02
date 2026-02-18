@@ -1,91 +1,129 @@
+CartInvoice.css
+
 .invoice-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
   padding: 20px;
-  background: #f9f9f9;
-  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.invoice-box {
-  max-width: 900px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  position: relative;
+.invoice-top-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.download-pdf-btn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.download-pdf-btn:hover {
+  background-color: #c9302c;
+}
+
+.invoice-box-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .invoice-title {
   text-align: center;
-  color: #2c3e50;
+  color: #333;
+  margin-bottom: 5px;
 }
 
 .invoice-subtitle {
   text-align: center;
-  color: #34495e;
-  margin-bottom: 20px;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .order-number {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .invoice-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.invoice-table th, .invoice-table td {
+.invoice-table th,
+.invoice-table td {
   border: 1px solid #ddd;
-  padding: 12px;
+  padding: 8px;
   text-align: center;
 }
 
 .invoice-table th {
-  background: #2c3e50;
-  color: #fff;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
 .invoice-total {
   text-align: right;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+.invoice-actions {
   margin-top: 20px;
-  color: #e74c3c;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .back-home-btn {
-  display: block;
-  margin: 30px auto 0;
-  padding: 12px 30px;
-  background: #27ae60;
+  background-color: #0275d8;
   color: white;
   border: none;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
 .back-home-btn:hover {
-  background: #2ecc71;
+  background-color: #025aa5;
 }
 
-/* Spinner styles */
+/* Spinner overlay */
 .spinner-overlay {
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(255,255,255,0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  z-index: 10;
+  justify-content: center;
+  z-index: 9999;
 }
 
 .spinner {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #d9534f;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -93,6 +131,98 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.thermal-invoice {
+  width: 85mm;        
+  height: 100mm;           
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #000;
+  background: #fff;
+  padding: 20px 15px;      
+  margin: 5% auto;      
+  line-height: 1.4;
+  border: 1.5px solid #000; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.thermal-invoice h3 {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.thermal-invoice p {
+  margin: 3px 0;
+}
+
+.thermal-invoice hr {
+  border: 0;
+  border-top: 1px dashed #000;
+  margin: 5px 0;
+}
+
+.thermal-invoice table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5px 0;
+  font-size: 11px;
+}
+
+.thermal-invoice th, .thermal-invoice td {
+  padding: 3px 0;
+  border-bottom: 1px solid #000;
+}
+
+.thermal-invoice th:first-child,
+.thermal-invoice td:first-child {
+  text-align: left;
+  width: 35%; 
+}
+
+.thermal-invoice th:nth-child(2),
+.thermal-invoice td:nth-child(2) {
+  text-align: center;
+  width: 10%;
+}
+
+.thermal-invoice th:nth-child(3),
+.thermal-invoice td:nth-child(3) {
+  text-align: center;
+  width: 15%; 
+}
+
+.thermal-invoice th:nth-child(4),
+.thermal-invoice td:nth-child(4) {
+  text-align: center;
+  width: 10%; 
+}
+
+.thermal-invoice th:nth-child(5),
+.thermal-invoice td:nth-child(5) {
+  text-align: center;
+  width: 10%; 
+}
+
+.thermal-invoice th:last-child,
+.thermal-invoice td:last-child {
+  text-align: right;
+  width: 20%; 
+}
+
+.thermal-invoice p.total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+.thermal-invoice p.footer {
+  text-align: center;
+  font-size: 10px;
+  margin-top: 8px;
 }

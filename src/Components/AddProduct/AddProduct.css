@@ -1,60 +1,123 @@
-.col-sm-6.offset-sm-3 {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  background-color: #fff;
-  padding: 30px 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  font-family: 'Arial', sans-serif;
+
+.add-product-container {
+    max-width: 480px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
+.add-product-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #1a1a1a;
 }
 
-input.form-control {
-  padding: 12px 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease;
+.add-product-container input[type="text"],
+.add-product-container input[type="file"],
+.add-product-container input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: 0.25s all ease-in-out;
+    cursor: text;
 }
 
-input.form-control:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 5px rgba(13,110,253,0.3);
-  outline: none;
+.add-product-container input[type="text"]:hover,
+.add-product-container input[type="file"]:hover,
+.add-product-container input[type="number"]:hover,
+.add-product-container input[type="text"]:focus,
+.add-product-container input[type="file"]:focus,
+.add-product-container input[type="number"]:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 8px rgba(79,70,229,0.3);
+    outline: none;
 }
 
-input[type="file"] {
-  padding: 6px 12px;
+.add-product-container button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #4f46e5, #6366f1);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
 }
 
-button.btn-primary {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+.add-product-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(79,70,229,0.35);
 }
 
-button.btn-primary:hover {
-  background-color: #0b5ed7;
-  box-shadow: 0 4px 12px rgba(13,110,253,0.3);
-  cursor: pointer;
+.selected-image-container {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-input.form-control + input.form-control,
-input.form-control + input[type="file"],
-button.btn-primary {
-  margin-top: 15px;
+.selected-image-preview {
+    width: 120px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 5px;
 }
 
-@media (max-width: 768px) {
-  .col-sm-6.offset-sm-3 {
-    width: 90%;
-    padding: 20px;
-  }
+.selected-image-caption {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    border-radius: 12px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .add-product-container {
+        padding: 20px 15px;
+        margin: 30px auto;
+    }
+
+    .add-product-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .selected-image-preview {
+        width: 100px;
+    }
 }

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import {} from 'react-bootstrap';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Header from './Components/Header/header';
 import Login from './Components/Login/login';
 import Register from './Components/Register/register';
@@ -12,6 +13,7 @@ import ProductList from './Components/ProductList/ProductList';
 import SearchProduct from './Components/Search/searchProduct';
 import CartView from './Components/CartView/CartView';
 import CartInvoicePage from './Components/CartInvoice/CartInvoice';
+import OrderHistory from './Components/OrderHistory/OrderHistory';
 import { useLocation, useNavigate } from "react-router-dom"; 
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
         <Route path="/CartView" element={<Protected Component={CartView} />} />
         <Route path="/invoice/:orderId" element={<CartInvoicePageWrapper />} />
         <Route path="/searchProduct" element={<Protected Component={SearchProduct} />} />
+        <Route path="/OrderHistory" element={<Protected Component={OrderHistory} />} />
         </Routes>
       </BrowserRouter>
     </div>

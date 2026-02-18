@@ -1,45 +1,130 @@
+import React, { useState, useRef } from "react";
 import Header from '../Header/header';
-import React, {useState, useEffect} from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AddProduct.css";
 
-function AddProduct () {
+function AddProduct() {
     const [product_name, setName] = useState('');
-    const [file_path, setFile] = useState('');
+    const [file_path, setFile] = useState(null);
     const [product_price, setPrice] = useState('');
     const [description, setDescription] = useState(''); 
+    const [loading, setLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
 
-    async function addProduct() {
+    const fileInputRef = useRef(null);
+
+    // Handle file selection
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Restrict to images only
+        if (!file.type.startsWith("image/")) {
+            toast.error("Please select a valid image file");
+            e.target.value = null;
+            return;
+        }
+
+        setFile(file);
+        setSelectedImage(URL.createObjectURL(file));
+    }
+
+    // Handle product addition
+    const addProduct = async () => {
+        if (!product_name || !product_price || !description || !file_path) {
+            toast.error("Please fill all fields and select an image");
+            return;
+        }
+
+        setLoading(true);
+
         const formData = new FormData();
         formData.append('product_name', product_name);
         formData.append('file_path', file_path);
-        formData.append('product_price', product_price);
+        formData.append('product_price', parseInt(product_price)); // integer only
         formData.append('description', description);
-        let result = await fetch("http://localhost:8000/api/addProduct", {
-            method: 'POST',
-            body: formData
-        });
-        alert("Product Added Successfully");
-        formData.set('product_name', '');
-        formData.set('file_path', '');
-        formData.set('product_price', '');
-        formData.set('description', '');
+
+        try {
+            let result = await fetch("http://localhost:8000/api/addProduct", {
+                method: 'POST',
+                body: formData
+            });
+            let data = await result.json();
+
+            if (data.status || result.ok) {
+                toast.success("Product Added Successfully");
+                // Reset form
+                setName('');
+                setFile(null);
+                setPrice('');
+                setDescription('');
+                setSelectedImage(null);
+                if (fileInputRef.current) fileInputRef.current.value = null;
+            } else {
+                toast.error("Failed to add product");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Something went wrong");
+        }
+
+        setLoading(false);
     }
 
-
-
     return (
-        <div > 
-            <Header /> 
-            <div className="col-sm-6 offset-sm-3">
-                <br />
+        <div>
+            <Header />
+            <div className="add-product-container">
+                {loading && (
+                    <div className="spinner-overlay">
+                        <div className="spinner"></div>
+                    </div>
+                )}
 
-                <input type="text" className="form-control" placeholder="Product Name" value={product_name} onChange={(e) => setName(e.target.value)} /> <br />
-                <input type="file" className="form-control" placeholder="Upload Image"  onChange={(e) => setFile(e.target.files[0])} /> <br />
-                <input type="text" className="form-control" placeholder="Product Price" value={product_price} onChange={(e) => setPrice(e.target.value)} /> <br />
-                <input type="text" className="form-control" placeholder="Product Description" value={description} onChange={(e) => setDescription(e.target.value)} /> <br />
-                <button className="btn btn-primary" onClick={addProduct}>Add Product</button>
+                <h1>Add Product</h1>
+
+                <input 
+                    type="text"
+                    value={product_name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Product Name"
+                />
+
+                <input 
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={product_price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Product Price (AED)"
+                />
+
+                <input 
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Product Description"
+                />
+
+                <input 
+                    type="file"
+                    onChange={handleFileChange}
+                    ref={fileInputRef}
+                />
+
+                {/* Selected Image Preview */}
+                {selectedImage && (
+                    <div className="selected-image-container">
+                        <img src={selectedImage} alt="Selected" className="selected-image-preview"/>
+                        <div className="selected-image-caption">Image selected</div>
+                    </div>
+                )}
+
+                <button onClick={addProduct}>Add Product</button>
             </div>
 
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
     );
 }

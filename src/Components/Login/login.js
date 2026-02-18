@@ -14,6 +14,8 @@ import {
 import { motion } from "framer-motion";
 import './login.css';
 import Spinner from 'react-bootstrap/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -28,12 +30,12 @@ function Login() {
 async function handleLogin() {
 
     if (email.length < 3 || !email.includes("@")) {
-        alert("Please enter a valid email");
+        toast.error("Please enter a valid email");
         return;
     }
 
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters long");
+    if (!password.length) {
+        toast.warning("Please enter a password to Continue!");
         return;
     }
 
@@ -50,29 +52,47 @@ async function handleLogin() {
         });
 
         let result = await response.json();
+        
         setLoading(false);
-
+        
         if (result.success) {
-
+            
             localStorage.setItem("user-info", JSON.stringify(result));
-
+            
+            toast.success("Successfully LoggedIn!", {
+               position: "top-right",
+               autoClose: 1000, 
+            });
+        setTimeout(() => {
             if (result.user.user_role === "admin") {
                 navigate("/AddProduct");
             } else {
-                navigate("/searchProduct");
+                navigate("/");
             }
-
+         }, 1000);    
         } else{
-            alert(result.message || "Invalid Email or Password");
+            toast.error(result.message || "Invalid Email or Password");
         }
-
     } catch (error) {
         setLoading(false);
-        alert("Server error");
+        toast.error("Server Side Error 500");
     }
 }
     return (
-
+        <div>
+            <ToastContainer  
+                className="loginToastMessage"
+                position="top-right" 
+                autoClose={3000} 
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,6 +149,7 @@ async function handleLogin() {
 
             </MDBContainer>
         </motion.div>
+        </div>
     );
 }
 export default Login;

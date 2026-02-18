@@ -20,3 +20,6 @@
     text-shadow:2px 2px 5px rgb(220, 220, 165), -1px -1px 3px rgb(112, 112, 112) !important ;
     transition: 0.2s ease-in-out;
 }
+.toastContainer{
+  font-size: 12px !important;
+}
