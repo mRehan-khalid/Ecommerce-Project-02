@@ -3,6 +3,7 @@ import Header from '../Header/header';
 import { Table } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 import "./searchProduct.css";
+import { environment  } from '../../environment';
 
 function SearchProduct() {
   const [query, setQuery] = useState('');
@@ -16,7 +17,7 @@ function SearchProduct() {
     if (!key) return;
     setLoading(true);
     try {
-      let result = await fetch(`http://localhost:8000/api/searchProduct/${key}?page=${page}`);
+      let result = await fetch(`${environment.serverUrl}/api/searchProduct/${key}?page=${page}`);
       result = await result.json();
       const data = result.data || [];
       setAllData(data);
@@ -91,7 +92,7 @@ function SearchProduct() {
                   <td>{index + 1}</td>
                   <td>{item.product_name}</td>
                   <td>
-                    <img src={`http://localhost:8000/${item.file_path}`} alt={item.product_name} />
+                    <img src={`${environment.serverUrl}/${item.file_path}`} alt={item.product_name} />
                   </td>
                   <td>{item.description}</td>
                   <td>{parseFloat(item.product_price).toLocaleString('en-US')}</td>

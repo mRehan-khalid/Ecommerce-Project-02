@@ -8,6 +8,7 @@ import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { FaFilePdf, FaFileExcel } from "react-icons/fa";
+import { environment  } from '../../environment';
 
 function OrderHistory() {
   const [orders, setOrders] = useState([]);
@@ -29,7 +30,7 @@ function OrderHistory() {
 
     setLoading(true);
     fetch(
-      `http://localhost:8000/api/userOrders/${userId}?per_page=${perPage}&page=${page}`
+      `${environment.serverUrl}/api/userOrders/${userId}?per_page=${perPage}&page=${page}`
     )
       .then((res) => res.json())
       .then((data) => {

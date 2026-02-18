@@ -16,6 +16,7 @@ import './login.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { environment  } from '../../environment';
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -42,7 +43,8 @@ async function handleLogin() {
     setLoading(true);
 
     try {
-        let response = await fetch("http://localhost:8000/api/login", {
+        console.log(environment.serverUrl);
+        let response = await fetch(`${environment.serverUrl}/api/login`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

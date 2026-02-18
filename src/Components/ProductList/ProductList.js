@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { FaShoppingCart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { environment  } from '../../environment';
 
 function ProductList() {
 
@@ -20,7 +21,7 @@ function ProductList() {
 
     async function fetchData(page = 1) {
         setLoading(true);
-        let response = await fetch(`http://localhost:8000/api/productsList?page=${page}`);
+        let response = await fetch(`${environment.serverUrl}/api/productsList?page=${page}`);
         let result = await response.json();
 
         setData(result.data);
@@ -38,7 +39,7 @@ function ProductList() {
             return;
         }
 
-        let response = await fetch("http://localhost:8000/api/deleteProduct/" + id, {
+        let response = await fetch(`${environment.serverUrl}/api/deleteProduct/` + id, {
             method: "DELETE",
         });
 
@@ -53,7 +54,7 @@ const [cartCount, setCartCount] = useState(0);
 const fetchCartCount = async () => {
   if (!user) return;
   try {
-    const res = await fetch(`http://localhost:8000/api/cartCount/${user.id}`);
+    const res = await fetch(`${environment.serverUrl}/api/cartCount/${user.id}`);
     const data = await res.json();
     setCartCount(data.count);
   } catch (err) {
@@ -69,7 +70,7 @@ async function addToCart(productId) {
     }
 
     try {
-        let response = await fetch(`http://localhost:8000/api/addToCart/${productId}`, {
+        let response = await fetch(`${environment.serverUrl}/api/addToCart/${productId}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ user_id: user.id })
@@ -121,7 +122,7 @@ async function addToCart(productId) {
             <td>
                 <img className="productImage"
                      style={{ width: 70 }}
-                     src={"http://localhost:8000/" + item.file_path}
+                     src={`${environment.serverUrl}/` + item.file_path}
                      alt="product"
                 />
             </td>

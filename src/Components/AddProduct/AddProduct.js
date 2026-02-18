@@ -3,6 +3,7 @@ import Header from '../Header/header';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddProduct.css";
+import { environment } from "../../environment";
 
 function AddProduct() {
     const [product_name, setName] = useState('');
@@ -42,11 +43,11 @@ function AddProduct() {
         const formData = new FormData();
         formData.append('product_name', product_name);
         formData.append('file_path', file_path);
-        formData.append('product_price', parseInt(product_price)); // integer only
+        formData.append('product_price', parseInt(product_price)); 
         formData.append('description', description);
 
         try {
-            let result = await fetch("http://localhost:8000/api/addProduct", {
+            let result = await fetch(`${environment.serverUrl}/api/addProduct`, {
                 method: 'POST',
                 body: formData
             });

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Header/header";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { environment  } from '../../environment';
 
 function CartView() {
   const [cartItems, setCartItems] = useState([]);
@@ -23,7 +24,7 @@ function CartView() {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/userCart/${userId}`);
+      const res = await axios.get(`${environment.serverUrl}/api/userCart/${userId}`);
       setCartItems(res.data);
     } catch (err) {
       console.error(err);
@@ -35,7 +36,7 @@ function CartView() {
   const updateQuantity = async (cartItemId, newQuantity) => {
     if (newQuantity < 1) return;
     try {
-      await axios.put(`http://localhost:8000/api/updateCartQuantity/${cartItemId}`, { quantity: newQuantity });
+      await axios.put(`${environment.serverUrl}/api/updateCartQuantity/${cartItemId}`, { quantity: newQuantity });
       fetchCart();
       toast.success("Quantity updated");
     } catch (err) {
@@ -46,7 +47,7 @@ function CartView() {
 
   const removeItem = async (cartItemId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/removeCartItem/${cartItemId}`);
+      await axios.delete(`${environment.serverUrl}/api/removeCartItem/${cartItemId}`);
       fetchCart();
       toast.success("Item removed from cart");
     } catch (err) {
@@ -58,7 +59,7 @@ function CartView() {
   const handleCheckout = async () => {
     try {
       setCheckoutLoading(true);
-      const res = await axios.post("http://localhost:8000/api/checkout", { user_id: userId });
+      const res = await axios.post(`${environment.serverUrl}/api/checkout`, { user_id: userId });
       setCartItems([]);
       navigate(`/invoice/${res.data.order_id}`, { state: { orderData: res.data, cartItems } });
       toast.success("Checkout successful");

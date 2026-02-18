@@ -9,7 +9,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    <footer style={{'backgroundColor':'black'}}>you </footer>
   </React.StrictMode>
 );
 

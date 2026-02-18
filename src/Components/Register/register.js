@@ -16,6 +16,7 @@ import "./register.css"
 import Spinner from 'react-bootstrap/Spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { environment  } from '../../environment';
 
 function Register() {
     useEffect(() => {
@@ -50,7 +51,7 @@ function Register() {
         setLoading(true);
         let item = { name, password, email };
         console.warn(item);
-        let response = await fetch("http://localhost:8000/api/register", {
+        let response = await fetch(`${environment.serverUrl}/api/register`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',

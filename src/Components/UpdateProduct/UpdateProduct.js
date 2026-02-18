@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./UpdateProduct.css";
+import { environment  } from '../../environment';
 
 function UpdateProduct () {
     const { id } = useParams(); 
@@ -19,7 +20,7 @@ function UpdateProduct () {
     const fetchData = async () => {
         setLoading(true);
         try {
-            let result = await fetch("http://localhost:8000/api/getProductById/" + id);
+            let result = await fetch(`${environment.serverUrl}/api/getProductById/` + id);
             result = await result.json();
             setData(result);
             setProductName(result.product_name);
@@ -76,7 +77,7 @@ function UpdateProduct () {
         if (file_path) formData.append("file_path", file_path);
 
         try {
-            let result = await fetch(`http://localhost:8000/api/updateProduct/${id}?_method=PUT`, {
+            let result = await fetch(`${environment.serverUrl}/api/updateProduct/${id}?_method=PUT`, {
                 method: "POST",
                 body: formData
             });
@@ -148,7 +149,7 @@ function UpdateProduct () {
 
                 {!selectedImage && data.file_path && (
                     <div className="selected-image-container">
-                        <img src={`http://localhost:8000/${data.file_path}`} alt="Current" className="selected-image-preview"/>
+                        <img src={`${environment.serverUrl}/${data.file_path}`} alt="Current" className="selected-image-preview"/>
                         <div className="selected-image-caption">Current image</div>
                     </div>
                 )}
