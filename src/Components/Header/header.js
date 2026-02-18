@@ -27,15 +27,17 @@ function Header({ cartCount }) {
           {user && user.user_role === "admin" && (
             <Link to="/AddProduct">Add Product</Link>
           )}
-
+           {user && user.user_role === "user" && (
           <Link to="/OrderHistory">OrderHistory</Link>
-
-          <Link to="/CartView">
-            View Cart
-            {cartCount > 0 && (
-              <span className="cart-badge">{cartCount}</span>
-            )}
-          </Link>
+           )}
+           {user && user.user_role === "user" && (
+             <Link to="/CartView">
+              View Cart
+              {cartCount > 0 && (
+                <span className="cart-badge">{cartCount}</span>
+              )}
+            </Link>
+          )}
         </Nav>
 
         {user && (

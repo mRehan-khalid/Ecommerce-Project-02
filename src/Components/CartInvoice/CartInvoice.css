@@ -34,9 +34,15 @@ CartInvoice.css
   background-color: #c9302c;
 }
 
+.invoice-box{
+  max-width: 100%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
 .invoice-box-wrapper {
   background-color: white;
   padding: 20px;
+  margin: 100px;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }

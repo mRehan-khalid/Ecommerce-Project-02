@@ -23,7 +23,7 @@ function CartInvoicePage({ cartItems, orderData, onBackToHome }) {
   );
 
   const formatNumber = (num) =>
-    Number(num).toLocaleString("en-US", { minimumFractionDigits: 2 });
+    Number(num).toLocaleString("en-US", {});
 
   const downloadThermalPDF = () => {
     setLoading(true);
@@ -48,15 +48,14 @@ function CartInvoicePage({ cartItems, orderData, onBackToHome }) {
       <Header />
 
       <div className="invoice-container">
-        {/* Top-left download button */}
         <div className="invoice-top-actions">
+        </div>
+
+        <div className="invoice-box-wrapper">
           <button className="download-pdf-btn" onClick={downloadThermalPDF}>
             <FaFilePdf style={{ marginRight: "5px" }} />
             Download PDF
           </button>
-        </div>
-
-        <div className="invoice-box-wrapper">
           <div className="invoice-box" ref={invoiceRef}>
             <h1 className="invoice-title">Thank You!</h1>
             <p className="invoice-subtitle">
