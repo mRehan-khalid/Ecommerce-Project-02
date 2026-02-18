@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
+    "framer-motion": "^12.34.1",
+    "mdb-react-ui-kit": "^10.0.0",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",

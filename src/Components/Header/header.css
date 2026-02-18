@@ -1,0 +1,49 @@
+/* Header.css */
+
+/* Navbar wrapper */
+.navbar {
+  padding: 10px 20px;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Brand */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #fff !important;
+}
+
+/* Nav links */
+.nav_bar_wrapper a {
+  color: #fff !important;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav_bar_wrapper a:hover {
+  color: #0d6efd !important; /* Bootstrap primary color */
+  text-decoration: underline;
+}
+
+/* Dropdown styling */
+.navbar .dropdown-menu {
+  background-color: #343a40;
+}
+
+.navbar .dropdown-item {
+  color: #fff !important;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #495057;
+  color: #fff !important;
+}
+
+/* Adjust spacing for right-aligned user dropdown */
+.navbar-nav.ml-auto, .navbar-nav.ms-auto {
+  margin-left: auto;
+}

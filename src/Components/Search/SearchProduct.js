@@ -1,36 +1,28 @@
-import Header from "./header";
-import React, { useState, useEffect } from "react";
+import Header from '../Header/header';
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 
-
-function ProductList() {
-
+function SearchProduct () {
+    const [query, setQuery] = useState([""]);
     const [data, setData] = useState([]);
 
-    async function fetchData() {
-        let result = await fetch("http://localhost:8000/api/productsList");
+    async function search(key) {
+        let result = await fetch("http://localhost:8000/api/searchProduct/"+ key);
         result = await result.json();
+        console.log(result);
         setData(result);
-    }   
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    async function deleteProduct(id) {
-       let result = await fetch("http://localhost:8000/api/deleteProduct/" + id, {
-            method: "DELETE",   
-    });
-    result = await result.json();
-        // console.warn("Product Deleted");
-        fetchData();
-        // window.location.reload();
     }
-    
     return (
         <div>
             <Header />
+            <div className="col-sm-6 offset-sm-3">
+                <h1>Search Product</h1>
+                <input type="text" className="form-control"   value={query} 
+                    onChange={(e) => setQuery(e.target.value)}placeholder="Search Product" /> 
+                <button className="btn btn-primary" onClick={() => search(query)}>Search</button>
+            </div>
             <div className="col-sm-8 offset-sm-2">
-            <h1>Product List Table</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -39,7 +31,6 @@ function ProductList() {
                         <th>Product Image</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,14 +42,15 @@ function ProductList() {
                                 <td><img style={{ width: 100 }} src={"http://localhost:8000/" + item.file_path} /></td>
                                 <td>{item.description}</td>
                                 <td>{item.product_price}</td>
-                                <td><span className="deleteProduct" onClick={()=>deleteProduct(item.id)}>Delete</span></td>
                             </tr>)
                         )}
 
                 </tbody>
             </Table>
-            </div>
         </div>
-    );
+        </div>
+
+        );
 }
-export default ProductList;
+
+export default SearchProduct;

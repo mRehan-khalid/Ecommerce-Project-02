@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    padding-bottom: 40px;
 }
 
 .App-logo {
@@ -10,6 +12,23 @@
 
 .deleteProduct{
   background-color: #c21a1a;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+ .signUpPage{
+      background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+        transition: 0.7s ease-in;
+}
+ .loginPage{
+      background: linear-gradient(to right, rgb(129, 17, 203), rgb(37, 155, 252));
+        transition: 0.7s ease-in;
+        
+}
+.updateProduct{
+  background-color: #42dd97;
   color: white;
   padding: 5px;
   border-radius: 5px;

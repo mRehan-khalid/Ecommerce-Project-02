@@ -1,0 +1,98 @@
+.invoice-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+
+.invoice-box {
+  max-width: 900px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.invoice-title {
+  text-align: center;
+  color: #2c3e50;
+}
+
+.invoice-subtitle {
+  text-align: center;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.order-number {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.invoice-table th, .invoice-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.invoice-table th {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.invoice-total {
+  text-align: right;
+  margin-top: 20px;
+  color: #e74c3c;
+}
+
+.back-home-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 30px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-home-btn:hover {
+  background: #2ecc71;
+}
+
+/* Spinner styles */
+.spinner-overlay {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
