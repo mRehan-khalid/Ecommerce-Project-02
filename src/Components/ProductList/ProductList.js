@@ -130,7 +130,7 @@ function ProductList() {
                                     <td>{item.product_price} AED</td>
 
                                     {user && user.user_role === "admin" && (
-                                        <>
+                                        <div>
                                             <td>
                                                 <span
                                                     className="deleteProduct"
@@ -151,7 +151,7 @@ function ProductList() {
                                                     </span>
                                                 </Link>
                                             </td>
-                                        </>
+                                        </div>
                                     )}
                                     {user && user.user_role === "user" && (
                                         <td>
