@@ -12,7 +12,7 @@ function Header({ cartCount }) {
 
   function logout() {
     localStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/";
   }
 
   return (
@@ -22,7 +22,7 @@ function Header({ cartCount }) {
 
         <Nav className="mr-auto nav_bar_wrapper">
           <Link to="/searchProduct">Search Product</Link>
-          <Link to="/">Product List</Link>
+          <Link to="/products">Product List</Link>
 
           {user && user.user_role === "admin" && (
             <Link to="/AddProduct">Add Product</Link>

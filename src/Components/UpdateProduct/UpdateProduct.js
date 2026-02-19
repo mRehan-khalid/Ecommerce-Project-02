@@ -149,7 +149,7 @@ function UpdateProduct () {
 
                 {!selectedImage && data.file_path && (
                     <div className="selected-image-container">
-                        <img src={`${environment.serverUrl}/${data.file_path}`} alt="Current" className="selected-image-preview"/>
+                        <img src={`${environment.serverUrl}/storage/${data.file_path}`} alt="Current" className="selected-image-preview"/>
                         <div className="selected-image-caption">Current image</div>
                     </div>
                 )}

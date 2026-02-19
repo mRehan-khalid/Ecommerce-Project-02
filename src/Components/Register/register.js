@@ -24,7 +24,7 @@ function Register() {
         const user = userInfo ? JSON.parse(userInfo).user : null;
         if (localStorage.getItem("user-info")) {
             if (user && user.id) {
-                navigate("/");
+                navigate("/products");
             }
         }
     }, [])
@@ -82,7 +82,7 @@ function Register() {
         setLoading(false);
         
         setTimeout(() => {
-            navigate("/login");
+            navigate("/");
         }, 2000); 
     }
 
@@ -136,7 +136,7 @@ function Register() {
                                     </div>
 
                                     <div>
-                                        <p className="mb-0">Already have an account? <a href="#!" class="text-white-50 fw-bold" onClick={() => navigate("/login")}>Login</a></p>
+                                        <p className="mb-0">Already have an account? <a href="#!" class="text-white-50 fw-bold" onClick={() => navigate("/")}>Login</a></p>
 
                                     </div>
                                 </MDBCardBody>

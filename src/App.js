@@ -35,9 +35,9 @@ function App() {
         <Route path="/UpdateProduct/:id" element={<Protected Component={UpdateProduct} />} />
         <Route path="/AddProduct" element={<Protected Component={AddProduct} />} />
        
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Protected Component={ProductList} />} />
+        <Route path="/products" element={<Protected Component={ProductList} />} />
         <Route path="/CartView" element={<Protected Component={CartView} />} />
         <Route path="/invoice/:orderId" element={<CartInvoicePageWrapper />} />
         <Route path="/searchProduct" element={<Protected Component={SearchProduct} />} />

@@ -92,7 +92,7 @@ function SearchProduct() {
                   <td>{index + 1}</td>
                   <td>{item.product_name}</td>
                   <td>
-                    <img src={`${environment.serverUrl}/${item.file_path}`} alt={item.product_name} />
+                    <img src={`${environment.serverUrl}/storage/${item.file_path}`} alt={item.product_name} />
                   </td>
                   <td>{item.description}</td>
                   <td>{parseFloat(item.product_price).toLocaleString('en-US')}</td>

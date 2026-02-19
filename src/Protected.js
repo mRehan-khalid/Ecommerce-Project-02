@@ -10,7 +10,7 @@ function Login (props) {
     useEffect(() => {
         if(!localStorage.getItem("user-info"))
         {
-            navigate("/login");
+            navigate("/");
         }
     },[])
     return (

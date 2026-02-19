@@ -69,7 +69,7 @@ async function handleLogin() {
             if (result.user.user_role === "admin") {
                 navigate("/AddProduct");
             } else {
-                navigate("/");
+                navigate("/products");
             }
          }, 1000);    
         } else{

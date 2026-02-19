@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ProductList.css";
+import { environment } from '../../environment';
 import Spinner from 'react-bootstrap/Spinner';
 import { FaShoppingCart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { environment  } from '../../environment';
 
 function ProductList() {
 
@@ -49,51 +49,51 @@ function ProductList() {
             toast.error("Delete failed");
         }
     }
-const [cartCount, setCartCount] = useState(0);
+    const [cartCount, setCartCount] = useState(0);
 
-const fetchCartCount = async () => {
-  if (!user) return;
-  try {
-    const res = await fetch(`${environment.serverUrl}/api/cartCount/${user.id}`);
-    const data = await res.json();
-    setCartCount(data.count);
-  } catch (err) {
-    console.error(err);
-    setCartCount(0);
-  }
-};
-
-async function addToCart(productId) {
-    if (!user) {
-        alert("Please login first!");
-        return;
-    }
-
-    try {
-        let response = await fetch(`${environment.serverUrl}/api/addToCart/${productId}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ user_id: user.id })
-        });
-
-        let result = await response.json();
-
-        if (response.ok) {
-            toast.success(result.message); 
-            fetchCartCount(); 
-        } else {
-            toast.error(result.message || "Failed to add to cart");
+    const fetchCartCount = async () => {
+        if (!user) return;
+        try {
+            const res = await fetch(`${environment.serverUrl}/api/cartCount/${user.id}`);
+            const data = await res.json();
+            setCartCount(data.count);
+        } catch (err) {
+            console.error(err);
+            setCartCount(0);
         }
-    } catch (error) {
-        console.error(error);
-        toast.error("Error adding to cart");
+    };
+
+    async function addToCart(productId) {
+        if (!user) {
+            alert("Please login first!");
+            return;
+        }
+
+        try {
+            let response = await fetch(`${environment.serverUrl}/api/addToCart/${productId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user_id: user.id })
+            });
+
+            let result = await response.json();
+
+            if (response.ok) {
+                toast.success(result.message);
+                fetchCartCount();
+            } else {
+                toast.error(result.message || "Failed to add to cart");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Error adding to cart");
+        }
     }
-}
 
     return (
         <div>
-            <Header  cartCount={cartCount} />
-            <ToastContainer position="top-right" autoClose={1500} hideProgressBar />    
+            <Header cartCount={cartCount} />
+            <ToastContainer position="top-right" autoClose={1500} hideProgressBar />
             {loading ? (
                 <Spinner animation="border" size="md" variant="light" className="loadingSpinner" />
             ) : (
@@ -114,59 +114,59 @@ async function addToCart(productId) {
                             </tr>
                         </thead>
 
-<tbody>
-    {data.map((item, index) => (
-        <tr key={item.id}>
-            <td>{(currentPage - 1) * 5 + index + 1}</td>
-            <td>{item.product_name}</td>
-            <td>
-                <img className="productImage"
-                     style={{ width: 70 }}
-                     src={`${environment.serverUrl}/` + item.file_path}
-                     alt="product"
-                />
-            </td>
-            <td>{item.description}</td>
-            <td>{item.product_price} AED</td>
+                        <tbody>
+                            {data.map((item, index) => (
+                                <tr key={item.id}>
+                                    <td>{(currentPage - 1) * 5 + index + 1}</td>
+                                    <td>{item.product_name}</td>
+                                    <td>
+                                        <img className="productImage"
+                                            style={{ width: 70 }}
+                                            src={`${environment.serverUrl}/storage/${item.file_path}`}
+                                            alt="product"
+                                        />
+                                    </td>
+                                    <td>{item.description}</td>
+                                    <td>{item.product_price} AED</td>
 
-            {user && user.user_role === "admin" && (
-                <>
-                    <td>
-                        <span
-                            className="deleteProduct"
-                            style={{ cursor: "pointer", color: "red" }}
-                            onClick={() => deleteProduct(item.id)}
-                        >
-                            Delete
-                        </span>
-                    </td>
+                                    {user && user.user_role === "admin" && (
+                                        <>
+                                            <td>
+                                                <span
+                                                    className="deleteProduct"
+                                                    style={{ cursor: "pointer", color: "red" }}
+                                                    onClick={() => deleteProduct(item.id)}
+                                                >
+                                                    Delete
+                                                </span>
+                                            </td>
 
-                    <td>
-                        <Link to={"/updateProduct/" + item.id}>
-                            <span
-                                className="updateProduct"
-                                style={{ cursor: "pointer", color: "blue" }}
-                            >
-                                Update
-                            </span>
-                        </Link>
-                    </td>
-                </>
-            )}
-            {user && user.user_role === "user" && (
-                <td>
-                    <span
-                        className="addToCart"
-                        style={{ cursor: "pointer", color: "green" }}
-                        onClick={()=>addToCart(item.id)}
-                    >
-                        <FaShoppingCart /> Add to Cart
-                    </span>
-                </td>
-            )}
-        </tr>
-    ))}
-</tbody>
+                                            <td>
+                                                <Link to={"/updateProduct/" + item.id}>
+                                                    <span
+                                                        className="updateProduct"
+                                                        style={{ cursor: "pointer", color: "blue" }}
+                                                    >
+                                                        Update
+                                                    </span>
+                                                </Link>
+                                            </td>
+                                        </>
+                                    )}
+                                    {user && user.user_role === "user" && (
+                                        <td>
+                                            <span
+                                                className="addToCart"
+                                                style={{ cursor: "pointer", color: "green" }}
+                                                onClick={() => addToCart(item.id)}
+                                            >
+                                                <FaShoppingCart /> Add to Cart
+                                            </span>
+                                        </td>
+                                    )}
+                                </tr>
+                            ))}
+                        </tbody>
 
                     </Table>
                     <div className="pagination-container text-center my-3">
@@ -182,8 +182,8 @@ async function addToCart(productId) {
                             <button
                                 key={page}
                                 className={`btn ${page === currentPage ? "btn-primary" : "btn-light"} me-1`}
-                                style={{ 
-                                    width: page === currentPage ? '20%' : '40px', 
+                                style={{
+                                    width: page === currentPage ? '20%' : '40px',
                                 }}
                                 onClick={() => setCurrentPage(page)}
                             >
